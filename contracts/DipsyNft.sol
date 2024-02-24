@@ -2,7 +2,7 @@
 pragma solidity 0.8.24;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-// import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 
@@ -29,14 +29,8 @@ contract DipsyNft is ERC721URIStorage {
         string memory description
     ) public pure returns (string memory) {
         bytes memory dataURI = abi.encodePacked(
-            '{"name": "',
-            name,
-            '","description": "',
-            description,
-            '","image": "',
-            generateSVG(svgImage),
-            '"}'
-        );
+          '{"name": "', name, '","description": "', description, '","image": "', generateSVG(svgImage), '"}'
+          );
         return string(abi.encodePacked("data:application/json;base64,", Base64.encode(dataURI)));
     }
 }
